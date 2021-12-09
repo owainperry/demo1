@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: flagger-grafana
+  namespace: linkerd
+spec:
+  chart:
+    spec:
+      chart: grafana
+      sourceRef:
+        kind: HelmRepository
+        name: flagger      
+  values: 
+    url: http://prometheus.linkerd-viz:9090
+    user: admin
+    password: admin    
+  interval: 10m0s
